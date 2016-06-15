@@ -32,9 +32,7 @@ class FetchGoogleCalendarEvents extends Command
     public function handle()
     {
         $events = collect(Event::get())
-            ->filter(function (Event $event) {
-                return $event->name != 'Poetsvrouwman';
-            })->map(function (Event $event) {
+            ->map(function (Event $event) {
                 return [
                     'name' => $event->name,
                     'date' => Carbon::createFromFormat('Y-m-d H:i:s', $event->getSortDate())->format(DateTime::ATOM),

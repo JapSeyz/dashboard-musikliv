@@ -41,6 +41,7 @@ export default {
     
 
     created() {
+        moment.locale('da')
         this.refreshTime();
 
         setInterval(this.refreshTime, 1000);

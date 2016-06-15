@@ -30,22 +30,11 @@ class FetchTotals extends Command
      */
     public function handle()
     {
-        $client = new Client();
-
-        $packagist = new Packagist($client);
-
-        $totals = collect($packagist->getPackagesByVendor('spatie')['packageNames'])
-                ->map(function ($packageName) use ($packagist) {
-                    return $packagist->findPackageByName($packageName)['package'];
-                })
-                ->pipe(function ($packageProperties) {
-                    return [
-                        'stars' => $packageProperties->sum('favers'),
-                        'daily' => $packageProperties->sum('downloads.daily'),
-                        'monthly' => $packageProperties->sum('downloads.monthly'),
-                        'total' => $packageProperties->sum('downloads.total'),
-                    ];
-                });
+        $totals = [
+            'sold' => 200,
+            'daily' => 100,
+            'total' => 50,
+        ];
 
         event(new TotalsFetched($totals));
     }

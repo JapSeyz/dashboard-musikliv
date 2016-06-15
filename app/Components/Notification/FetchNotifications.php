@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Components\RainForecast;
+namespace App\Components\Notification;
 
 use App\Components\RainForecast\Events\ForecastFetched;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
-class FetchRainForecast extends Command
+class FetchNotifications extends Command
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $signature = 'dashboard:rain';
+    protected $signature = 'dashboard:notification';
 
     /**
      * The console command description.
@@ -34,8 +34,8 @@ class FetchRainForecast extends Command
         $OWApi = env('OPENWEATHER_API_KEY');
 
         $responseBody = (string) (new Client())
-                ->get("http://api.openweathermap.org/data/2.5/forecast/city?id={$cityId}&APPID={$OWApi}")
-                ->getBody();
+            ->get("http://api.openweathermap.org/data/2.5/forecast/city?id={$cityId}&APPID={$OWApi}")
+            ->getBody();
 
         $forecast = $this->getForecastFromResponseBody($responseBody);
 
@@ -48,9 +48,9 @@ class FetchRainForecast extends Command
 
         return collect($forecastItems)
             ->map(function ($forecastItem) {
-                
+
                 $chanceOfRain = 0;
-                
+
                 if(array_key_exists('3h', $forecastItem)) {
                     $chanceOfRain = (int) ($forecastItem[ 'rain' ][ '3h' ] * 100);
                 }

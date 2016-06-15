@@ -7,12 +7,10 @@ use App\Components\DashboardEvent;
 class TotalsFetched extends DashboardEvent
 {
     public $daily;
-
-    public $monthly;
-
+    
     public $total;
 
-    public $stars;
+    public $sold;
 
     public function __construct($totals)
     {

@@ -7,7 +7,7 @@ export default {
     template: `
         <grid :position="grid" modifiers="overflow padded blue">
             <section class="github-file">
-                <h1 class="github-file__title">{{ fileName | capitalize }}</h1>
+                <h1 class="github-file__title">{{ title | capitalize }}</h1>
                 <div  class="github-file__content">
                     {{{ contents }}}
                 </div>
@@ -21,25 +21,27 @@ export default {
 
     mixins: [Pusher, SaveState],
 
-    props: ['fileName', 'grid'],
+    props: ['grid'],
 
     data() {
         return {
             contents: '',
+            title: '',
         };
     },
 
     methods: {
         getEventHandlers() {
             return {
-                'App\\Components\\GitHub\\Events\\FileContentFetched': response => {
-                    this.contents = response.fileContent[this.fileName];
+                'App\\Components\\Notification\\Events\\NotificationFetched': response => {
+                    this.contents = response.contents;
+                    this.title = response.title;
                 },
             };
         },
 
         getSavedStateId() {
-            return `github-file-${this.fileName}`;
+            return `notification-${this.title}`;
         },
     },
 };

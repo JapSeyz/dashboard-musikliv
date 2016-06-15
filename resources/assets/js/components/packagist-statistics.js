@@ -7,22 +7,18 @@ export default {
     template: `
         <grid :position="grid" modifiers="padded overflow">
             <section class="packagist-statistics">
-                <h1>Package Downloads</h1>
+                <h1>Billet statistik</h1>
                     <ul>
                     <li class="packagist-statistic">
-                        <span class="packagist-statistics__stars"></span>
-                        <span class="packagist-statistics__count">{{ stars | format-number }}</span>
+                        <span class="packagist-statistics__period">Solgt</span>
+                        <span class="packagist-statistics__count">{{ sold | format-number }}</span>
                     </li>
                     <li class="packagist-statistic">
-                        <h2 class="packagist-statistics__period">Today</h2>
+                        <h2 class="packagist-statistics__period">I Dag</h2>
                         <span class="packagist-statistics__count">{{ daily | format-number }}</span>
                     </li>
-                    <li class="packagist-statistic">
-                        <h2 class="packagist-statistics__period">This month</h2>
-                        <span class="packagist-statistics__count">{{ monthly | format-number }}</span>
-                    </li>
                     <li class="packagist-statistic -total">
-                        <h2 class="packagist-statistics__period">Total Downloads</h2>
+                        <h2 class="packagist-statistics__period">I Alt </h2>
                         <span class="packagist-statistics__count">{{ total | format-number }}</span>
                     </li>
                 </ul>
@@ -40,9 +36,8 @@ export default {
 
     data() {
         return {
-            stars: 0,
+            sold: 0,
             daily: 0,
-            monthly: 0,
             total: 0,
         };
     },
@@ -51,9 +46,8 @@ export default {
         getEventHandlers() {
             return {
                 'App\\Components\\Packagist\\Events\\TotalsFetched': response => {
-                    this.stars = response.stars;
+                    this.sold = response.sold;
                     this.daily = response.daily;
-                    this.monthly = response.monthly;
                     this.total = response.total;
                 },
             };

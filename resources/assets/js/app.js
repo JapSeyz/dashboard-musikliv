@@ -1,20 +1,19 @@
 import './helpers/vue-filters';
 import CurrentTime from './components/current-time';
-import GithubFile from './components/github-file';
 import GoogleCalendar from './components/google-calendar';
-import InternetConnection from './components/internet-connection';
 import LastFm from './components/last-fm';
 import moment from 'moment';
+import Notification from './components/notification';
 import PackagistStatistics from './components/packagist-statistics';
 import RainForecast from './components/rain-forecast';
 import Vue from 'vue';
 
-moment.locale('en', {
+moment.locale('da', {
     calendar: {
-        lastDay: '[Yesterday]',
-        sameDay: '[Today]',
-        nextDay: '[Tomorrow]',
-        lastWeek: '[last] dddd',
+        lastDay: '[I går]',
+        sameDay: '[I dag]',
+        nextDay: '[I morgen]',
+        lastWeek: '[Sidste] dddd',
         nextWeek: 'dddd',
         sameElse: 'L',
     },
@@ -26,12 +25,11 @@ new Vue({
 
     components: {
         CurrentTime,
-        GithubFile,
         GoogleCalendar,
-        InternetConnection,
         LastFm,
         PackagistStatistics,
         RainForecast,
+        Notification,
     },
 
 });
