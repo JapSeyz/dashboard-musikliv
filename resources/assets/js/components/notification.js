@@ -40,7 +40,7 @@ export default {
                     if (this.grid == response.grid) {
                         this.message = response.message;
                         this.title = response.title;
-                        this.time = moment().format('hh:mm');
+                        this.time = moment().format('HH:mm');
                     }
                 },
             };
