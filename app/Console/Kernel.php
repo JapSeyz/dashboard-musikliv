@@ -13,11 +13,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Components\GoogleCalendar\FetchGoogleCalendarEvents::class,
         \App\Components\LastFm\FetchCurrentTrack::class,
+        \App\Components\GoogleCalendar\FetchGoogleCalendarEvents::class,
         \App\Components\Packagist\FetchTotals::class,
-        \App\Components\RainForecast\FetchRainForecast::class,
         \App\Components\Livecam\FetchImage::class,
+        \App\Components\RainForecast\FetchRainForecast::class,
     ];
 
     /**
@@ -29,8 +29,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('dashboard:lastfm')->everyMinute();
         $schedule->command('dashboard:calendar')->everyFiveMinutes();
-        $schedule->command('dashboard:packagist')->everyMinute();
+        $schedule->command('dashboard:packagist')->everyFiveMinutes();
         $schedule->command('dashboard:image')->everyFiveMinutes();
-        $schedule->command('dashboard:rain')->everyTenMinutes();
+        $schedule->command('dashboard:rain')->everyFiveMinutes();
     }
 }
