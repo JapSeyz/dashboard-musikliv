@@ -10,10 +10,7 @@ _ide_helper*.php
 # FRONT END
 /node_modules
 /npm-debug.log
-/public/build
-/resources/assets/css
-/public/css
-/public/js
+/resources/assets/
 /public/doc/sass
 /public/media
 
