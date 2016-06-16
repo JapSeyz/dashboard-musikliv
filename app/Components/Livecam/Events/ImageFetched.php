@@ -10,6 +10,6 @@ class ImageFetched extends DashboardEvent
     
     public function __construct()
     {
-        $this->path = asset('img/livecam.jpg').'?'.time();
+        $this->path = '/img/livecam.jpg?'.time();
     }
 }

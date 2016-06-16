@@ -31,7 +31,6 @@ export default {
             return {
                 'App\\Components\\Livecam\\Events\\ImageFetched': response => {
                     this.path = response.path;
-                    console.log(this.path);
                 },
             };
         },
