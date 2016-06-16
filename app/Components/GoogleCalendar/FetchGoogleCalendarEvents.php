@@ -2,6 +2,7 @@
 
 namespace App\Components\GoogleCalendar;
 
+use App\Calendar;
 use App\Components\GoogleCalendar\Events\EventsFetched;
 use Carbon\Carbon;
 use DateTime;
@@ -31,7 +32,7 @@ class FetchGoogleCalendarEvents extends Command
      */
     public function handle()
     {
-        $events = collect(Event::get())
+        $events = collect(Calendar::get())
             ->map(function (Event $event) {
                 return [
                     'name' => $event->name,
