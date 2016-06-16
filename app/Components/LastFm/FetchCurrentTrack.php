@@ -35,6 +35,11 @@ class FetchCurrentTrack extends Command
         foreach (config('last-fm.users') as $userName) {
             $currentTrack = $lastFm->getTrackInfo($userName);
 
+            $currentTrack['trackName'] = str_limit($currentTrack['trackName'], 35);
+            if (\Storage::disk('public')->exists('img/artwork/' . str_slug($currentTrack['artist']) . '.jpg')) {
+                $currentTrack['artwork'] = '/img/artwork/' . str_slug($currentTrack['artist']) . '.jpg';
+            }
+
             if ($currentTrack) {
                 event(new TrackIsPlaying($currentTrack, $userName));
 
