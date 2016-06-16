@@ -34,7 +34,7 @@ class FetchRainForecast extends Command
         $OWApi = env('OPENWEATHER_API_KEY');
 
         $responseBody = (string) (new Client())
-                ->get("http://api.openweathermap.org/data/2.5/forecast/city?id={$cityId}&APPID={$OWApi}")
+                ->get("http://api.openweathermap.org/data/2.5/forecast/weather?id={$cityId}&APPID={$OWApi}")
                 ->getBody();
 
         $forecast = $this->getForecastFromResponseBody($responseBody);
@@ -45,16 +45,17 @@ class FetchRainForecast extends Command
     public function getForecastFromResponseBody(string $responseBody): array
     {
         $forecastItems = json_decode($responseBody, true)['list'];
+        unset($forecastItems[0]);
 
         return collect($forecastItems)
             ->map(function ($forecastItem) {
                 
                 $chanceOfRain = 0;
                 
-                if(array_key_exists('3h', $forecastItem)) {
+                if(array_key_exists('3h', $forecastItem['rain'])) {
                     $chanceOfRain = (int) ($forecastItem[ 'rain' ][ '3h' ] * 100);
                 }
-
+                
                 $carbon = $this->getCarbonFromTime($forecastItem['dt']);
 
                 $minutes = $carbon->diffInMinutes();

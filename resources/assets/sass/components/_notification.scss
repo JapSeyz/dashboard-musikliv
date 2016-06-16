@@ -1,0 +1,21 @@
+.notification {
+  position: relative;
+}
+
+.notification__title {
+  color: color($blue, light);
+  font-size: setting($font-size, m);
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+.notification__content {
+  font-size: setting($font-size, s);
+}
+
+.notification__small {
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
+  font-size: setting($font-size, xxs);
+}

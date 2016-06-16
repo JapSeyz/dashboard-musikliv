@@ -10,8 +10,8 @@ export default {
     template: `
         <grid :position="grid" modifiers="padded">
             <section :class="status | modify-class 'rain-forecast'">
-                <h1 class="rain-forecast__title rain-forecast__title--rainy" v-if="status == 'rainy'">30' FORECAST</h1>
-                <h1 class="rain-forecast__title rain-forecast__title--rainy" v-if="status == 'wet'">STAY INSIDE</h1>
+                <h1 class="rain-forecast__title rain-forecast__title--rainy" v-if="status == 'rainy'">30' UDSIGT</h1>
+                <h1 class="rain-forecast__title rain-forecast__title--rainy" v-if="status == 'wet'">BLIV INDE</h1>
                 <div class="rain-forecast__background"></div>
                 <div class="rain-forecast__graph" v-if="status == 'rainy'">
                     <graph
@@ -20,7 +20,7 @@ export default {
                       line-color="rgba(19,134,158, .5)"
                       background-color="rgba(19,134,158, .25)"
                     ></graph>
-                </div>                    
+                </div>
             </section>
         </grid>
     `,
@@ -92,7 +92,7 @@ export default {
             let foreCastItemWithNoRain = _.filter(this.forecast, foreCastItem => {
                 return foreCastItem.chanceOfRain < 40;
             }).length;
-
+            
             return foreCastItemWithNoRain.length == 0;
         },
     },

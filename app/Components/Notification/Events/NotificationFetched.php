@@ -6,13 +6,14 @@ use App\Components\DashboardEvent;
 
 class NotificationFetched extends DashboardEvent
 {
+    public $grid;
     public $title;
+    public $message;
 
-    public $content;
-
-    public function __construct($title, $content)
+    public function __construct($grid, $title, $message)
     {
+        $this->grid = $grid;
         $this->title = $title;
-        $this->content = markdownToHtml($content);
+        $this->message = $message;
     }
 }

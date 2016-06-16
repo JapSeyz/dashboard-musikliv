@@ -9,11 +9,12 @@
 @import 'layout/dashboard';
 @import 'layout/graph';
 @import 'layout/grid';
+@import "layout/admin";
 
 @import 'components/current-time';
-@import 'components/internet-connection';
 @import 'components/google-calendar';
-@import 'components/github-file';
+@import 'components/notification';
 @import 'components/last-fm';
+@import 'components/livecam';
 @import 'components/packagist-statistics';
 @import 'components/rain-forecast';

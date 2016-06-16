@@ -38,10 +38,14 @@ export default {
             time: '',
         };
     },
-    
+
 
     created() {
-        moment.locale('da')
+        moment.updateLocale('da', {
+            weekdaysShort: ['Søn', 'Man', 'Tirs', 'Ons', 'Tors', 'Fre', 'Lør'],
+            weekdays: ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag"]
+        });
+        moment.locale('da');
         this.refreshTime();
 
         setInterval(this.refreshTime, 1000);
