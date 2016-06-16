@@ -45367,7 +45367,7 @@ exports.default = {
                     if (_this.grid == response.grid) {
                         _this.message = response.message;
                         _this.title = response.title;
-                        _this.time = (0, _moment2.default)().format('hh:mm');
+                        _this.time = (0, _moment2.default)().format('HH:mm');
                     }
                 }
             };
