@@ -45,17 +45,14 @@ class FetchRainForecast extends Command
     public function getForecastFromResponseBody(string $responseBody): array
     {
         $forecastItems = json_decode($responseBody, true)['list'];
-        unset($forecastItems[0]);
 
         return collect($forecastItems)
             ->map(function ($forecastItem) {
-                
                 $chanceOfRain = 0;
                 
                 if(array_key_exists('3h', $forecastItem['rain'])) {
-                    $chanceOfRain = (int) ($forecastItem[ 'rain' ][ '3h' ] * 100);
+                    $chanceOfRain = (int) ($forecastItem[ 'rain' ][ '3h' ] * 100 );
                 }
-                
                 $carbon = $this->getCarbonFromTime($forecastItem['dt']);
 
                 $minutes = $carbon->diffInMinutes();
@@ -66,7 +63,7 @@ class FetchRainForecast extends Command
 
                 return compact('chanceOfRain', 'minutes');
             })
-            ->take(2)
+            ->take(6)
             ->values()
             ->toArray();
     }
