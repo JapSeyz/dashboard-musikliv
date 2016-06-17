@@ -6,16 +6,16 @@ use App\Components\DashboardEvent;
 
 class TotalsFetched extends DashboardEvent
 {
-    public $daily;
-    
-    public $total;
-
-    public $sold;
+    public $tickets;
+    public $friday;
+    public $saturday;
+    public $door;
+    public $food;
 
     public function __construct($totals)
     {
         foreach ($totals as $sumName => $total) {
-            $this->$sumName = $total;
+            $this->$sumName = (int) $total;
         }
     }
 }

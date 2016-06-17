@@ -45379,21 +45379,21 @@ exports.default = {
 };
 
 },{"../mixins/pusher":63,"../mixins/save-state":64,"./grid":53,"moment":44}],57:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _grid = require('./grid');
+var _grid = require("./grid");
 
 var _grid2 = _interopRequireDefault(_grid);
 
-var _pusher = require('../mixins/pusher');
+var _pusher = require("../mixins/pusher");
 
 var _pusher2 = _interopRequireDefault(_pusher);
 
-var _saveState = require('../mixins/save-state');
+var _saveState = require("../mixins/save-state");
 
 var _saveState2 = _interopRequireDefault(_saveState);
 
@@ -45401,7 +45401,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
 
-    template: '\n        <grid :position="grid" modifiers="padded overflow">\n            <section class="packagist-statistics">\n                <h1>Billet statistik</h1>\n                    <ul>\n                    <li class="packagist-statistic">\n                        <span class="packagist-statistics__period">Solgt</span>\n                        <span class="packagist-statistics__count">{{ sold | format-number }}</span>\n                    </li>\n                    <li class="packagist-statistic">\n                        <h2 class="packagist-statistics__period">I Dag</h2>\n                        <span class="packagist-statistics__count">{{ daily | format-number }}</span>\n                    </li>\n                    <li class="packagist-statistic -total">\n                        <h2 class="packagist-statistics__period">I Alt </h2>\n                        <span class="packagist-statistics__count">{{ total | format-number }}</span>\n                    </li>\n                </ul>\n            </section>\n        </grid>\n    ',
+    template: "\n        <grid :position=\"grid\" modifiers=\"padded overflow\">\n            <section class=\"packagist-statistics\">\n                <h1>Package Downloads</h1>\n                    <ul>\n                    <li class=\"packagist-statistic\">\n                        <span class=\"packagist-statistics__period\">Billetter</span>\n                        <span class=\"packagist-statistics__count tickets\"></span>\n                    </li>\n                    <li class=\"packagist-statistic\">\n                        <span class=\"packagist-statistics__period\">Dørsalg</span>\n                        <span class=\"packagist-statistics__count door\"></span>\n                    </li>\n                    <li class=\"packagist-statistic\">\n                        <h2 class=\"packagist-statistics__period\">Fredag</h2>\n                        <span class=\"packagist-statistics__count friday\"></span>\n                    </li>\n                    <li class=\"packagist-statistic\">\n                        <h2 class=\"packagist-statistics__period\">Lørdag</h2>\n                        <span class=\"packagist-statistics__count saturday\"></span>\n                    </li>\n                    <li class=\"packagist-statistic\">\n                        <h2 class=\"packagist-statistics__period\">Madbilletter</h2>\n                        <span class=\"packagist-statistics__count food\"></span>\n                    </li>\n                </ul>\n            </section>\n        </grid>\n    ",
 
     components: {
         Grid: _grid2.default
@@ -45412,23 +45412,19 @@ exports.default = {
     props: ['grid'],
 
     data: function data() {
-        return {
-            sold: 0,
-            daily: 0,
-            total: 0
-        };
+        return {};
     },
 
 
     methods: {
         getEventHandlers: function getEventHandlers() {
-            var _this = this;
-
             return {
                 'App\\Components\\Packagist\\Events\\TotalsFetched': function AppComponentsPackagistEventsTotalsFetched(response) {
-                    _this.sold = response.sold;
-                    _this.daily = response.daily;
-                    _this.total = response.total;
+                    $('.tickets').html(response.tickets);
+                    $('.door').html(response.door);
+                    $('.friday').html(response.friday);
+                    $('.saturday').html(response.saturday);
+                    $('.food').html(response.food);
                 }
             };
         },

@@ -30,10 +30,15 @@ class FetchTotals extends Command
      */
     public function handle()
     {
+        $url = 'http://ikastmusikliv.dk/musiklivlager/jesper_api.php';
+        $json = json_decode(file_get_contents($url));
+
         $totals = [
-            'sold' => 200,
-            'daily' => 100,
-            'total' => 50,
+            'tickets' => $json->number_of_tickets,
+            'friday' => $json->checkins_friday,
+            'saturday' => $json->checkins_saturday,
+            'door' => $json->checkins_friday_doorsale + $json->checkins_saturday_doorsale,
+            'food' => $json->checkins_saturday_dinner,
         ];
 
         event(new TotalsFetched($totals));
